@@ -16,7 +16,7 @@
 
     <script>
 
-    /* =====================
+/*=====================
 
     # Lab 1, Part 3 — Array Access
 
@@ -62,11 +62,25 @@
     Start code
 
     ===================== */
-
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
-
+  /*  var restaurantData = [
+      {lat:39.948502, lng:-75.161990, label:"1"},
+      {lat:39.954494, lng:-75.157176, label:"2"},
+      {lat:39.950239, lng:-75.167561, label:"3"}
+    ];
+    var lat = restaurantData[0].lat;
+    var lng = restaurantData[0].lng;
+    var label = restaurantData[0].label;
+    L.marker(lat,lng).addTo(map);
+    L.popup(label).addTo(map);
+    */
+    var restaurantData = [
+      [39.948502,-75.161990, "1"],
+      [39.954494, -75.157176, "2"],
+      [39.950239, -75.167561, "3"]
+      ];
+    for (i=0; i<restaurantData.length; i++){
+      L.marker(restaurantData[i]).bindPopup(restaurantData[i][2]).addTo(map);
+    };
     /* =====================
 
     End code
