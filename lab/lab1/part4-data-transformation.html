@@ -15,6 +15,7 @@
     <script src="leaflet.js"></script>
     <script src="part4-data-clean.js"></script>
     <script src="part4-data-dirty.js"></script>
+    <script src="underscore.js"></script>
 
     <script>
 
@@ -51,7 +52,7 @@
 
     ===================== */
 
-    var data = bikeArrayClean;
+    //var data = bikeArrayClean;
 
     /* =====================
 
@@ -64,7 +65,7 @@
         dataFiltered.push(bikeArrayClean[i]);
     };
 };
-  console.log(dataFiltered);
+  //console.log(dataFiltered);
 
     /* =====================
 
@@ -90,16 +91,53 @@
     Start code to add markers to map
 
     ===================== */
+
     for (i=0; i<dataFiltered.length; i++){
     L.marker([dataFiltered[i][1],dataFiltered[i][0]]).bindPopup(dataFiltered[i]).addTo(map);
   };
-
 
     /* =====================
 
     End code to add markers to map
 
     ===================== */
+
+    /* =====================
+
+    Start working with dirty data
+
+    ===================== */
+    var data2 = bikeArrayDirty;
+    //create a temporary array holding elements without "stations"
+      for(var j=0; j<data2.length; j++) {
+        var temp1=_.without(data2[j],'stations');
+      }
+
+   //Slice the temp1 from the dirty data array
+        var temp2=data2.slice(temp1);
+        //console.log(data2);
+
+  //Convert strings to number
+       var temp3 =[];
+       for (var a=0; a<data2.length; a++){
+         if (parseInt(temp2[a][3]) > 20){
+            temp2[a][0]= parseFloat(temp2[a][0]);
+            temp2[a][1]= parseFloat(temp2[a][1]);
+            temp2[a][3]= parseInt(temp2[a][3]);
+            temp3.push(temp2[a]);
+         }
+       };
+       //console.log(temp3);
+
+       for (i=0; i<temp3.length; i++){
+       L.marker([temp3[i][1], temp3[i][0]]).bindPopup(temp3[i][2]).addTo(map);
+};
+        /* =====================
+
+        End working with dirty data
+
+        ===================== */
+
 
     </script>
   </body>

@@ -57,35 +57,44 @@
 
       ===================== */
       var data = healthCenters;
-      var keys= Object.keys(data);
-      var hcs = [];
-      for(var i=0, len=keys.length; i<len;i++){
-        hcs.push(data[keys[i]]);
-       }
-      //console.log(hcs);
-
-      var jsonToCsv = function(data) {
-      jsonToCsv(data);
-      console.log(hcs);
-    };
+      function getKey(obj){
+          var csv = [];
+          for(var i=0; i<obj.length; i++){
+          csv= Object.getOwnPropertyNames(obj[i]);
+          return (csv);
+}
+};
+     function getValue(obj){
+       var csv = [];
+       for(var i=0; i<obj.length; i++){
+          for(j in obj[i]){
+          csv[i+1]= Object.values(obj[i]);
+}
+}
+       return (csv)
+};
+        var keys = getKey(data);
+        var values = getValue(data);
+        keys.push(values);
+        console.log(keys);
 
       var dentist = L.icon({
       iconUrl: 'dentist.jpeg',
       iconSize: [60, 60]});
 
-      var addMarkers = function(data) {
+      function addMarkers (data) {
         for(var i=0; i<data.length; i++){
           if(data[i][5] >= 19140 && data[i][5] <= 19149){
             if(data[i][8] != "N/A"){
-            L.marker([data[i][1], data[i][0]], {icon: dentist}).draggable().bindPopup(data[i][3]).addTo(map);
+            L.marker([data[i][1], data[i][0]], {icon: dentist}).bindPopup(data[i][3]).addTo(map);
             }
             else{
-            L.marker([data[i][1], data[i][0]]).draggable().bindPopup(data[i][3]).addTo(map);
+            L.marker([data[i][1], data[i][0]]).bindPopup(data[i][3]).addTo(map);
             }
           }
         }
       };
-
+      addMarkers(values);
       /* =====================
 
       End code
