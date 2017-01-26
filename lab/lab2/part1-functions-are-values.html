@@ -24,7 +24,6 @@
       It adds together numbers and, for strings, string lengths. Other types are ignored.
 
       ===================== */
-      /*
       // Here's an array that we need to loop through:
       var theArray = ['A short story.', 42, 55, ['Another story'], 23, 12, 2, 4, 5, 6, 'bar', 'foo'];
 
@@ -42,16 +41,32 @@
           console.log("Not sure how to proceed with value:", arrayValue)
         }
       }
-*/
+
+
       /* =====================
 
       Start code
 
       ===================== */
-      var theArray = ['A short story.', 42, 55, ['Another story'], 23, 12, 2, 4, 5, 6, 'bar', 'foo'];
-      var yourSum = 0;
+
       // Store sum you compute in this variable:
-      // Refactor the work above into a few different functions that are reusable to the extent that you can
+      var yourSum = 0;
+
+      // Refactor is a word programmers sometimes use which can be translated as 'rewrite'.
+
+      // Your first task in this lab will be to refactor the example code from above
+      //  into a few different functions that are reusable to the extent that you can.
+      // One possible refactor would be to write a function that does one iteration of
+      //  all of the work in the loop above. With such a function, we separate the logic
+      //  which iterates over our array (the loop) from the logic which carries out a
+      //  single run within the loop.
+      // Depending on how you think about this problem, different answers are possible!
+
+      // Be sure to refresh the page and look at console output to see whether your refactor
+      //  works! You should see 'Success: true' if all goes well.
+
+      /* Define your function here */
+
       function sumOfArray(arrayValue){
           if (typeof arrayValue === 'string'){         // String case
             yourSum = yourSum + arrayValue.length
